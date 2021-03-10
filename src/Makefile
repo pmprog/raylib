@@ -371,11 +371,6 @@ ifeq ($(PLATFORM),PLATFORM_DRM)
     CFLAGS += -DEGL_NO_X11
 endif
 
-# Output current setup
-@echo "Platform: $(PLATFORM)"
-@echo "Operating System: $(PLATFORM_OS)"
-@echo "Wayland: $(USE_WAYLAND_DISPLAY)"
-
 # Use Wayland display on Linux desktop
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
@@ -517,6 +512,10 @@ all: raylib
 # Compile raylib library
 # NOTE: Release directory is created if not exist
 raylib: $(OBJS)
+# Output current setup
+@echo "Platform: $(PLATFORM)"
+@echo "Operating System: $(PLATFORM_OS)"
+@echo "Wayland: $(USE_WAYLAND_DISPLAY)"
 ifeq ($(PLATFORM),PLATFORM_WEB)
     # Compile raylib libray for web
     #$(CC) $(OBJS) -r -o $(RAYLIB_RELEASE_PATH)/lib$(RAYLIB_LIB_NAME).bc
