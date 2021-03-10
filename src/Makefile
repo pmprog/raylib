@@ -371,11 +371,42 @@ ifeq ($(PLATFORM),PLATFORM_DRM)
     CFLAGS += -DEGL_NO_X11
 endif
 
+# Output current setup
+@echo "Platform $(PLATFORM)"
+@echo "Operating System: $(PLATFORM_OS)"
+@echo "Wayland: $(USE_WAYLAND_DISPLAY)"
+
 # Use Wayland display on Linux desktop
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
             CFLAGS += -D_GLFW_WAYLAND
+
+            # TODO: Fix to look up properly
+            WAYLAND_PROTOCOLS_DIR = "/usr/share/wayland-protocols"
+            GLFW_INTERNAL_PATH = "external/glfw/src"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.c"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "$(GLFW_INTERNAL_PATH)/wayland-viewporter-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "$(GLFW_INTERNAL_PATH)/wayland-viewporter-client-protocol.c"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-relative-pointer-unstable-v1-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-relative-pointer-unstable-v1-client-protocol.c"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-pointer-constraints-unstable-v1-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-pointer-constraints-unstable-v1-client-protocol.c"
+
+            wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.h"
+            wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.c"
+
+            # wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.h"
+            # wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.c"
+
         else
             LDLIBS = -lX11
         endif
