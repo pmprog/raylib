@@ -568,8 +568,8 @@ core.o : core.c raylib.h rlgl.h utils.h raymath.h camera.h gestures.h
 # Compile rglfw module
 rglfw.o : rglfw.c
 ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
-	$(WAYLAND_SCANNER) client-header $(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml $(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.h
-	$(WAYLAND_SCANNER) private-code $(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml $(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c"
 
 	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.h"
 	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.c"
@@ -589,7 +589,7 @@ endif
 # wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.h"
 # wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.c"
 
-	$(CC) $(GLFW_OSX) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
+	$(CC) $(GLFW_OSX) $(GLFW_INTERNAL_PATH)/wayland-*.c -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
 
 # Compile shapes module
 shapes.o : shapes.c raylib.h rlgl.h
