@@ -319,7 +319,7 @@ endif
 #  -Wstrict-prototypes      warn if a function is declared or defined without specifying the argument types
 #  -Werror=implicit-function-declaration   catch function calls without prior declaration
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
-    CFLAGS += -Werror=implicit-function-declaration
+    #CFLAGS += -Werror=implicit-function-declaration
 endif
 ifeq ($(PLATFORM),PLATFORM_WEB)
     # -Os                        # size optimization
@@ -379,7 +379,7 @@ INCLUDE_PATHS = -I. -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
-            CFLAGS += -D_GLFW_WAYLAND -fPIC -D__USE_GNU
+            CFLAGS += -D_GLFW_WAYLAND -fPIC
             WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
             WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
             GLFW_INTERNAL_PATH ?= external/glfw/src
@@ -586,8 +586,8 @@ ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
 	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.h"
 	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.c"
 endif
-	# wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.h"
-	# wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.c"
+# wayland-scanner client-header "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.h"
+# wayland-scanner private-code "$(WAYLAND_PROTOCOLS_DIR)/.xml" "$(GLFW_INTERNAL_PATH)/wayland-.c"
 
 	$(CC) $(GLFW_OSX) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
 
