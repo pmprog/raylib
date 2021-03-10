@@ -371,6 +371,10 @@ ifeq ($(PLATFORM),PLATFORM_DRM)
     CFLAGS += -DEGL_NO_X11
 endif
 
+# Define include paths for required headers
+# NOTE: Several external required libraries (stb and others)
+INCLUDE_PATHS = -I. -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
+
 # Use Wayland display on Linux desktop
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
@@ -385,10 +389,6 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
         endif
     endif
 endif
-
-# Define include paths for required headers
-# NOTE: Several external required libraries (stb and others)
-INCLUDE_PATHS = -I. -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
 
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),BSD)
