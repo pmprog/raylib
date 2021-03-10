@@ -379,6 +379,7 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
             WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
             WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
             GLFW_INTERNAL_PATH ?= external/glfw/src
+            INCLUDE_PATHS += -I/usr/include/GL
         else
             LDLIBS = -lX11
         endif
