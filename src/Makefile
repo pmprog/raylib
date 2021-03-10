@@ -376,6 +376,9 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
             CFLAGS += -D_GLFW_WAYLAND
+            WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
+            WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
+            GLFW_INTERNAL_PATH ?= external/glfw/src
         else
             LDLIBS = -lX11
         endif
@@ -563,10 +566,6 @@ core.o : core.c raylib.h rlgl.h utils.h raymath.h camera.h gestures.h
 # Compile rglfw module
 rglfw.o : rglfw.c
 ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
-	WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
-	WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
-	GLFW_INTERNAL_PATH ?= external/glfw/src
-
 	$(WAYLAND_SCANNER) client-header $(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml $(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.h
 	$(WAYLAND_SCANNER) private-code $(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml $(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c
 
