@@ -379,7 +379,7 @@ INCLUDE_PATHS = -I. -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
-            CFLAGS += -D_GLFW_WAYLAND
+            CFLAGS += -D_GLFW_WAYLAND -fPIC
             WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
             WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
             GLFW_INTERNAL_PATH ?= external/glfw/src
