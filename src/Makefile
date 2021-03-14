@@ -579,35 +579,35 @@ core.o : core.c raylib.h rlgl.h utils.h raymath.h camera.h gestures.h
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
 
 wayland-idle-inhibit-unstable-v1-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "wayland-idle-inhibit-unstable-v1-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml" "wayland-idle-inhibit-unstable-v1-client-protocol.c"
 wayland-pointer-constraints-unstable-v1-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-pointer-constraints-unstable-v1-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-pointer-constraints-unstable-v1-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "wayland-pointer-constraints-unstable-v1-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml" "wayland-pointer-constraints-unstable-v1-client-protocol.c"
 wayland-relative-pointer-unstable-v1-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-relative-pointer-unstable-v1-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-relative-pointer-unstable-v1-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "wayland-relative-pointer-unstable-v1-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/relative-pointer/relative-pointer-unstable-v1.xml" "wayland-relative-pointer-unstable-v1-client-protocol.c"
 wayland-viewporter-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "$(GLFW_INTERNAL_PATH)/wayland-viewporter-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "$(GLFW_INTERNAL_PATH)/wayland-viewporter-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "wayland-viewporter-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/viewporter/viewporter.xml" "wayland-viewporter-client-protocol.c"
 wayland-xdg-decoration-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "wayland-xdg-decoration-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml" "wayland-xdg-decoration-client-protocol.c"
 wayland-xdg-shell-client-protocol.c :
-	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.h"
-	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "$(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c"
+	$(WAYLAND_SCANNER) client-header "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "wayland-xdg-shell-client-protocol.h"
+	$(WAYLAND_SCANNER) private-code "$(WAYLAND_PROTOCOLS_DIR)/stable/xdg-shell/xdg-shell.xml" "wayland-xdg-shell-client-protocol.c"
 
-wayland-idle-inhibit-unstable-v1-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-idle-inhibit-unstable-v1-client-protocol.c
+wayland-idle-inhibit-unstable-v1-client-protocol.o : wayland-idle-inhibit-unstable-v1-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
-wayland-pointer-constraints-unstable-v1-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-pointer-constraints-unstable-v1-client-protocol.c
+wayland-pointer-constraints-unstable-v1-client-protocol.o : wayland-pointer-constraints-unstable-v1-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
-wayland-relative-pointer-unstable-v1-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-relative-pointer-unstable-v1-client-protocol.c
+wayland-relative-pointer-unstable-v1-client-protocol.o : wayland-relative-pointer-unstable-v1-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
-wayland-viewporter-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-viewporter-client-protocol.c
+wayland-viewporter-client-protocol.o : wayland-viewporter-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
-wayland-xdg-decoration-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-xdg-decoration-client-protocol.c
+wayland-xdg-decoration-client-protocol.o : wayland-xdg-decoration-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
-wayland-xdg-shell-client-protocol.o : $(GLFW_INTERNAL_PATH)/wayland-xdg-shell-client-protocol.c
+wayland-xdg-shell-client-protocol.o : wayland-xdg-shell-client-protocol.c
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -D$(GRAPHICS)
 
 # Compile rglfw module
