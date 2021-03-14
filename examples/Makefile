@@ -325,16 +325,20 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),LINUX)
         # Libraries for Debian GNU/Linux desktop compiling
         # NOTE: Required packages: libegl1-mesa-dev
-        LDLIBS = -lraylib -lGL -lm -lpthread -ldl -lrt
-
-        # On X11 requires also below libraries
-        LDLIBS += -lX11
-        # NOTE: It seems additional libraries are not required any more, latest GLFW just dlopen them
-        #LDLIBS += -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor
+        ifeq ($(GRAPHICS),GRAPHICS_API_OPENGL_ES2)
+            LDFLAGS = -raylib -lGLESv2 -lEGL -lm -pthread -ldl -lrt
+        else
+            LDLIBS = -lraylib -lGL -lm -lpthread -ldl -lrt
+        endif
 
         # On Wayland windowing system, additional libraries requires
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
             LDLIBS += -lwayland-client -lwayland-cursor -lwayland-egl -lxkbcommon
+        else
+            # On X11 requires also below libraries
+            LDLIBS += -lX11
+            # NOTE: It seems additional libraries are not required any more, latest GLFW just dlopen them
+            #LDLIBS += -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor
         endif
         # Explicit link to libc
         ifeq ($(RAYLIB_LIBTYPE),SHARED)
