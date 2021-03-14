@@ -373,7 +373,11 @@ endif
 
 # Define include paths for required headers
 # NOTE: Several external required libraries (stb and others)
-INCLUDE_PATHS = -I. -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
+INCLUDE_PATHS = -I.
+
+ifeq ($(USE_EXTERNAL_GLFW),FALSE)
+    INCLUDE_PATHS += -Iexternal/glfw/include -Iexternal/glfw/deps/mingw
+endif
 
 # Use Wayland display on Linux desktop
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
