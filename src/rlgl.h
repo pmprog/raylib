@@ -1894,7 +1894,6 @@ void rlCheckErrors() {
 // Returns current OpenGL version
 int rlGetVersion(void)
 {
-/*
 #if defined(GRAPHICS_API_OPENGL_11)
     return OPENGL_11;
 #endif
@@ -1911,8 +1910,6 @@ int rlGetVersion(void)
 #if defined(GRAPHICS_API_OPENGL_ES2)
     return OPENGL_ES_20;
 #endif
-*/
-    return OPENGL_ES_20;
 }
 
 // Check internal buffer overflow for a given number of vertex
