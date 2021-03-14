@@ -383,7 +383,7 @@ endif
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS), LINUX)
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
-            CFLAGS += -D_GLFW_WAYLAND -fPIC
+            CFLAGS += -D_GLFW_WAYLAND -fPIC -DWL_EGL_PLATFORM
             WAYLAND_SCANNER ?= /usr/bin/wayland-scanner
             WAYLAND_PROTOCOLS_DIR ?= /usr/share/wayland-protocols
             GLFW_INTERNAL_PATH ?= external/glfw/src
